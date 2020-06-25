@@ -1,4 +1,6 @@
-//Reversing a Linked lIst & Print Using Recurrsion !!!!
+/*
+    Swap Nodes in Pairs in Linked List Iteraytive and Recursive
+*/
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -36,56 +38,53 @@ void Print(Node* Head){
     cout << Head->data << " ";
     Print(Head->next);
 }
-
-Node* Delete(Node* Head, int pos){
-    Node* temp = Head;
-    if(pos == 1){
-        Head = temp->next;
-        delete(temp);
-        return Head;
-    }
-    for(int i = 0; i< pos -2; i++){
-        temp = temp->next;
-    }
-    Node* temp1 = temp->next;
-    temp->next = temp1->next;
-    free(temp1);
-    return Head;
-
+// recursive O(n)
+Node* swapPairsRecursive(Node* head) {
+    if(head == NULL || head->next == NULL)  return head;
+    Node* a, *b, *c, *current;
+    a = head;
+    b =a->next;
+    c =b->next;
+        
+    b->next = a;
+    current = b;
+    a->next = swapPairsRecursive(c);
+    return current;
 }
-// Reverse using iteration
-Node* Reverse(Node* Head){
-    Node* current, *next, *pre;
-    pre = NULL;
-    current = Head;
-    while (current != NULL)
-    {
-        next = current->next;
-        current->next = pre;
-        pre = current;
-        current = next;        
+
+// Iterative O(n)
+Node* swapPairsI(Node* head) {
+    if(head == NULL || head->next == NULL)  return head;
+    Node* current = head, *Next = head->next,*prev;
+    current->next = Next->next;
+    prev = Next->next = current;
+    current = current->next;
+    head = Next;
+    while(current && current->next){
+        Next = current->next;
+        current->next =Next->next;
+        Next->next = current;
+        prev->next = Next;
+        prev = current;
+        current = current->next;
     }
-    Head = pre;
-    return Head;
-} 
+    return head;
+}
 
 int main(){
     srand(time(NULL));
     Node* Head = NULL;
-    int n, x, pos = 0, wish = 1;
+    int n, x;
     cout<< "How many Numbers you want to Enter ? ";
     cin >> n;
     for(int i = 0; i < n; i++){
-        pos++;
         x = rand()%100;
-        Head = Insert(Head, pos, x);
-        Print(Head);
-        cout <<endl;
+        Head = Insert(Head, i+1, x);
     }
-
-    cout << "-----------------------------------------------------------------------------------------------------------------"  <<endl;
-    cout<< "After Reversing : \n";  
-    Head = Reverse(Head);  
     Print(Head);
-    
+    cout << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------"  <<endl;
+    Head = swapPairsI(Head);  
+    Print(Head);
+    cout << endl;
 }

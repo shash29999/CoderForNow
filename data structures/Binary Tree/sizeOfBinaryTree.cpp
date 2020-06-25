@@ -41,3 +41,21 @@ int main(){
     root = Insert(root, 320);
     cout << size(root) << endl; // 9
 }
+
+/*
+The given tree:
+
+            100
+           /   \      
+          10    110
+          \       \
+          60      120
+                    \
+                     700
+                    /
+                   400
+                  /   \
+                 320   500
+
+
+*/

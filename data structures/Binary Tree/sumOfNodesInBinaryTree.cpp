@@ -55,3 +55,21 @@ int main(){
     cout << sumOfNodes(root) << endl;
     sumOfNodes1(root);
 }
+
+/*
+The given tree:
+
+            100
+           /   \      
+          10    110
+          \       \
+          60      120
+                    \
+                     700
+                    /
+                   400
+                  /   \
+                 320   500
+
+
+*/

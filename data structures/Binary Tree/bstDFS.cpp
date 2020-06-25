@@ -68,6 +68,8 @@ int main(){
     root = Insert(root, 500);
     root = Insert(root, 60);
     root = Insert(root, 320);
+    root = Insert(root, 800);
+    root = Insert(root, 920);
     preOrder(root);
     cout << endl;
     postOrder(root);
@@ -77,3 +79,19 @@ int main(){
     inOrder(root);
     cout << endl;
 }
+/*
+The given tree:
+
+            100
+           /   \      
+          10    110
+          \       \
+          60      120
+                    \
+                     700
+                    /   \
+                   400   800
+                  /   \     \
+                 320   500   920
+
+*/

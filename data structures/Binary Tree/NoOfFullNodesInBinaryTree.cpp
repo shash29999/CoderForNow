@@ -20,16 +20,16 @@ bstNode* Insert(bstNode* root, int x){
     else if(root->data < x) root->right = Insert(root->right, x);
     return root; 
 }
-/*
-int NoOfFullNodes(bstNode* root){
+// Method 1
+int NoOfFullNodesRecursive(bstNode* root){
     if(root == NULL) return 0;
     if(root->left && root->right)   return 1;
-    int left = NoOfFullNodes(root->left);
-    int right = NoOfFullNodes(root->right);
+    int left = NoOfFullNodesRecursive(root->left);
+    int right = NoOfFullNodesRecursive(root->right);
     return right +left;
 }
-*/
-void NoOfFullNodes(bstNode* root){
+// Method 2
+void NoOfFullNodesIterative(bstNode* root){
     queue<bstNode*> q;
     queue<int> q1;
     int count =0;
@@ -64,5 +64,24 @@ int main(){
     root = Insert(root, 500);
     root = Insert(root, 60);
     root = Insert(root, 320);
-    NoOfFullNodes(root);    
+    cout << NoOfFullNodesRecursive(root) << endl;
+    NoOfFullNodesIterative(root);    
 }
+
+/*
+The given tree:
+
+            100
+           /   \      
+          10    110
+          \       \
+          60      120
+                    \
+                     700
+                    /
+                   400
+                  /   \
+                 320   500
+
+
+*/

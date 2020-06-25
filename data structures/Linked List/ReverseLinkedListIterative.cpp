@@ -1,6 +1,4 @@
-/*
-    Reverse using recursion
-*/
+//Reversing a Linked list Iteratively & Print Using Recurrsion !!!!
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -32,38 +30,62 @@ Node* Insert(Node* Head, int pos, int val){
     return Head;   
 }
 
+// Print Using Recursion !!!!!!!!!!
 void Print(Node* Head){
-    cout<< "The list is:  ";
-    while (Head != NULL)
-    {
-        cout << Head->data << " ";
-        Head = Head->next;
+    if(Head == NULL)    return;
+    cout << Head->data << " ";
+    Print(Head->next);
+}
+
+Node* Delete(Node* Head, int pos){
+    Node* temp = Head;
+    if(pos == 1){
+        Head = temp->next;
+        delete(temp);
+        return Head;
     }
-    cout << endl;
+    for(int i = 0; i< pos -2; i++){
+        temp = temp->next;
+    }
+    Node* temp1 = temp->next;
+    temp->next = temp1->next;
+    free(temp1);
+    return Head;
+
 }
-// Reverse using recursion
+// Reverse using iteration
 Node* Reverse(Node* Head){
-    if(Head->next == NULL)  return Head;
-    Node* A = Reverse(Head->next);
-    Node* B = Head->next;
-    B->next = Head;
-    Head->next = NULL;
-    return A;
-}
+    Node* current, *next, *pre;
+    pre = NULL;
+    current = Head;
+    while (current != NULL)
+    {
+        next = current->next;
+        current->next = pre;
+        pre = current;
+        current = next;        
+    }
+    Head = pre;
+    return Head;
+} 
 
 int main(){
     srand(time(NULL));
     Node* Head = NULL;
-    int n, x;
+    int n, x, pos = 0, wish = 1;
     cout<< "How many Numbers you want to Enter ? ";
     cin >> n;
     for(int i = 0; i < n; i++){
+        pos++;
         x = rand()%100;
-        Head = Insert(Head, i+1, x);
+        Head = Insert(Head, pos, x);
+        Print(Head);
+        cout <<endl;
     }
-    Print(Head);    
+
     cout << "-----------------------------------------------------------------------------------------------------------------"  <<endl;
     cout<< "After Reversing : \n";  
-    Head =Reverse(Head);  
+    Head = Reverse(Head);  
     Print(Head);
+    
 }

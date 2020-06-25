@@ -38,12 +38,6 @@ void deepestNodeInBT(bstNode* root, int level,vector<int> &deepestNode ){
     return;
 }
 
-vector<int> deepestNodeInBT(bstNode* root){
-    vector<int> v;
-    while(root)
-}
-
-
 int main(){
     bstNode* root = NULL;
     root = Insert(root, 100);
@@ -55,9 +49,27 @@ int main(){
     root = Insert(root, 500);
     root = Insert(root, 60);
     root = Insert(root, 320);
+    root = Insert(root, 800);
+    root = Insert(root, 920);
     vector<int> nodes;
     deepestNodeInBT(root, heightOfBT(root), nodes);
     for(auto i = nodes.begin(); i!= nodes.end(); i++){
         cout << *i << " ";
     }
 }
+/*
+The given tree:
+
+            100
+           /   \      
+          10    110
+          \       \
+          60      120
+                    \
+                     700
+                    /   \
+                   400   800
+                  /   \     \
+                 320   500   920
+
+*/
